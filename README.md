@@ -18,6 +18,7 @@ The Bayesian periodicity spectrum is computed through the following steps:
 
 # Repository Structure
 matlab/
+
 ├── periodicity_analysis.m
 ├── non_oscillatory_periodicity_spectrum.m
 ├── credible_interval_individual_spectrum.m
