@@ -55,18 +55,15 @@ Below there is a typical workflow to obtain the power, periodicity, and Bayesian
 ## Example (MATLAB)
 
 ```matlab
-% ---------------------------------------------------------------------
-% In this example the signal is stored in a variable called 's', 
-% a M x 1 array.
-% The sampling frequency is set to 128 Hz, the segments in which the
-% time series will be divided is set to a length of 128 samples, and
-% the decomposition method is the continuous wavelet transform.
-% Optional input arguments are set to default values.
-% ---------------------------------------------------------------------
+
 % Signal
 Fs = 128;
 window_BF = 128;
 method = 'CWT';
+
+% --- Example signal ---
+t = 0:1/Fs:5-1/Fs;
+s = sin(2*pi*10*t) + 0.5*randn(size(t));
 
 % --- Step 1: non-oscillatory model ---
 psi_non_osc = non_oscillatory_periodicity_spectrum(length(s), Fs, window_BF, method);
