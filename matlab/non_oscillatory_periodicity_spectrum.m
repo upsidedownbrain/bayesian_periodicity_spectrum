@@ -67,7 +67,7 @@ arguments
     opts.hop (1,1) double {mustBePositive, mustBeInteger} = 1
     opts.FFTLength (1,1) double {mustBePositive, mustBeInteger} = round(1*Fs)
     opts.VoicesPerOctave (1,1) double {mustBePositive, mustBeInteger} = 16
-    opts.N_simulations (1,1) double {mustBePositive, mustBeInteger} = 1000
+    opts.N_simulations (1,1) double {mustBePositive, mustBeInteger} = 10000
 end
 
 rng('shuffle');
@@ -77,7 +77,7 @@ elseif strcmp(method, 'CWT')
 else
     error('Not valid. Use STFT or CWT.');
 end
-% We calculate the periodicity of 1000 non-oscillatory signals
+% We calculate the periodicity of 10000 non-oscillatory signals
 if length(signal_duration) == 1
     s_l = round(ones(10,1)*signal_duration);
 elseif length(signal_duration) == 2
