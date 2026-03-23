@@ -147,8 +147,6 @@ end
 results.power_sp = mean(power,2);
 
 %% 4. Normalized periodicity spectrum
-% Parameters optimized according to Pardo-Valencia et al., Science
-% Advances 2026. Please, adjust them to your own purposes.
 if strcmp(method, 'STFT')
     for z = 1:segments
         psi(:,z) = 1 ./ std(f_inst((z-1)*(window_BF)+1:z*(window_BF),:)) ./ psi_non_osc.mean_psi_non_osc_fitted'; % Measured as the inverse logarithm of the variance of the instantaneous frequency
