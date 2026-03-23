@@ -11,7 +11,7 @@ from .core import periodicity_analysis
 
 def non_oscillatory_periodicity_spectrum(signal_duration, Fs, window_BF, method,
                                           window=None, hop=1, FFTLength=None,
-                                          VoicesPerOctave=16, N_simulations=1000):
+                                          VoicesPerOctave=16, N_simulations=10000):
 
     if isinstance(signal_duration, (int, float)):
         lengths = [int(signal_duration)] * 10
