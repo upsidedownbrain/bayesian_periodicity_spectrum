@@ -117,6 +117,17 @@ This function performs a Bayesian paired t-test at each frequency component.
 # Notes on MATLAB vs Python
 The MATLAB implementation serves as the reference implementation. The Python version is scientifically equivalent, but minor numerical differences may occur due to differences from STFT/CWT implementations.
 
+MATLAB requirements:
+- Signal Processing Toolbox
+- Wavelet Toolbox
+- Statistics and Machine Learning Toolbox
+- DSP System Toolbox
+
+Python requirements:
+- numpy>=1.23
+- scipy>=1.9
+- pywavelets>=1.4
+
 ---
 
 # License
