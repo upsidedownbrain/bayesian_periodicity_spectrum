@@ -20,18 +20,29 @@ The Bayesian periodicity spectrum is computed through the following steps:
 matlab/
 
 ├── periodicity_analysis.m
+
 ├── non_oscillatory_periodicity_spectrum.m
+
 ├── credible_interval_individual_spectrum.m
+
 ├── ttest_bf_directional.m
+
 ├── spectra_comparison.m
+
 ├── posterior_odds_smoothing.m
+
 ├── posterior_odds_temperature.m
 
 python/
+
 ├── core.py
+
 ├── statistics.py
+
 ├── postprocessing.py
+
 ├── simulation.py
+
 ├── init.py
 
 ---
@@ -118,6 +129,7 @@ MIT License
 
 # Reference
 Please, if you use this code, cite this publication:
+
 Pardo-Valencia J., Ammann C., Fernández-García C., Alonso-Frech F., Foffani G. (2026).  
 *The Bayesian periodicity spectrum to quantify oscillatory activity in biological signals.*  
 Science Advances.
