@@ -1,10 +1,10 @@
-# Bayesian Periodicity Spectrum
+# Bayesian periodicity spectrum
 
 This repository contains MATLAB and Python implementations of the **Bayesian periodicity spectrum**, a method to quantify oscillatory activity based on the variability of the instantaneous frequency. The Bayesian periodicity spectrum provides a frequency-resolved measure of oscillatory activity that is robust to confounds from non-oscillatory components. Additionally, it incorporates a Bayesian framework to formally assess the **presence or absence of oscillations** at each frequency. This approach addresses key limitations of traditional methods that rely solely on the power spectrum for separating oscillatory and non-oscillatory components.
 
 ---
 
-# Method Overview
+# Method overview
 
 The Bayesian periodicity spectrum is computed through the following steps:
 
@@ -16,7 +16,7 @@ The Bayesian periodicity spectrum is computed through the following steps:
 
 ---
 
-# Repository Structure
+# Repository structure
 matlab/
 
 ├── periodicity_analysis.m
