@@ -20,9 +20,7 @@ function [mu_mean, mu_ci, df] = credible_interval_individual_spectrum(X, freqs, 
 % Authors: Jesús Pardo-Valencia, Guglielmo Foffani
 % Version: 2.0.0
 % Date: March 2026
-% Reference: Pardo-Valencia et al. (2026). The Bayesian periodicity
-% spectrum to quantify oscillatory activity in biological signals. Science
-% Advances.
+% Reference: 
 % Repository: GitHub
 % License: MIT License
 % Copyright (c) 2025 jpv
