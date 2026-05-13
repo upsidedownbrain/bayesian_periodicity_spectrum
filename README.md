@@ -138,8 +138,4 @@ MIT License
 # Reference
 Please, if you use this code, cite this publication:
 
-Pardo-Valencia J., Ammann C., Fernández-García C., Alonso-Frech F., Foffani G. (2026).  
-*The Bayesian periodicity spectrum to quantify oscillatory activity in biological signals.*  
-Science Advances.
-
 ---
