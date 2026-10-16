@@ -27,12 +27,10 @@ function results = non_oscillatory_periodicity_spectrum(signal_duration, Fs, win
 
 %% Output arguments
 % Results: struct type
-
 %
 % Authors: Jesús Pardo-Valencia, Guglielmo Foffani
 % Version: 2.0.0 
-% Date: March 2026
-% Reference: 
+% Date: October 2026
 % Repository: GitHub
 % License: MIT License
 % Copyright (c) 2025 jpv
@@ -65,7 +63,7 @@ arguments
     opts.hop (1,1) double {mustBePositive, mustBeInteger} = 1
     opts.FFTLength (1,1) double {mustBePositive, mustBeInteger} = round(1*Fs)
     opts.VoicesPerOctave (1,1) double {mustBePositive, mustBeInteger} = 16
-    opts.N_simulations (1,1) double {mustBePositive, mustBeInteger} = 10000
+    opts.N_simulations (1,1) double {mustBePositive, mustBeInteger} = 1000
 end
 
 rng('shuffle');
@@ -152,9 +150,21 @@ for j1 = 1:1:length(s_l)
         f_inst_final = f_inst';
 
         %% 3. Periodicity
-        segments = floor(size(f_inst_final,1)/window_BF);
+        sampleHop = 1;
+        if strcmp(method,'STFT'), sampleHop = opts.hop; end
+        segments = floor(size(f_inst_final,1)*sampleHop/window_BF);
+        if segments < 1
+            error('non_oscillatory_periodicity_spectrum:InsufficientSegments', ...
+                'Each simulated signal requires at least one complete segment.');
+        end
+        segmentEdges = ceil((0:segments)*window_BF/sampleHop);
+        if any(diff(segmentEdges) < 2)
+            error('non_oscillatory_periodicity_spectrum:InsufficientSegmentFrames', ...
+                'Each segment requires at least two instantaneous-frequency frames. Increase window_BF or decrease the STFT hop.');
+        end
         for z = 1:segments
-            psi = 1./std(f_inst_final((z-1)*(window_BF)+1:z*(window_BF),:)); % Measured as the inverse logarithm of the variance of the instantaneous frequency
+            idx = (segmentEdges(z)+1):segmentEdges(z+1);
+            psi = 1./std(f_inst_final(idx,:)); % Inverse standard deviation of instantaneous frequency
             non_osc(j1).value(:,i,z) = psi;
         end
     end
