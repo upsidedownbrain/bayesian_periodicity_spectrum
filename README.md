@@ -25,7 +25,7 @@ matlab/
 
 ├── credible_interval_individual_spectrum.m
 
-├── ttest_bf_directional.m
+├── ttest_bf.m
 
 ├── spectra_comparison.m
 
@@ -43,9 +43,24 @@ python/
 
 ├── simulation.py
 
-├── init.py
+├── __init__.py
+
+├── pyproject.toml
+
+└── tests/
 
 ---
+
+# Installation
+
+Clone this repository, then install the Python package from its root:
+
+```shell
+python -m pip install ./python
+```
+
+For MATLAB, add the `matlab` folder to the MATLAB path. See
+[the Python documentation](python/README.md) for API and array conventions.
 
 # Basic usage
 Given a signal of interest s(t), the "Bayesian periodicity spectrum toolbox" first calculates the corresponding periodicity of non-oscilaltory components, depending of the method used for the frequency component decomposition — for this toolbox, the short-time Fourier transform (STFT) or the continuous wavelet transform (CWT). If multiple signals with different durations share the same decomposition parameters, use the shortest signal duration to compute the periodicity of the non-oscillatory components. This reduces computation time — shorter simulated signals require fewer resources — and the resulting periodicity can then be applied to all signals of interest. The periodicity spectrum is estimated as the inverse square root of the variance of the instantaneous frequency for each component. Instantaneous frequency traces are divided into segments of equal length in order to estimate the Bayesian periodicity spectrum. This strategy allows to assess the level of evidence for the presence or the absence of oscillatory activity in a single signal.
@@ -115,18 +130,32 @@ This function performs a Bayesian paired t-test at each frequency component.
 ---
 
 # Notes on MATLAB vs Python
-The MATLAB implementation serves as the reference implementation. The Python version is scientifically equivalent, but minor numerical differences may occur due to differences from STFT/CWT implementations.
+The MATLAB implementation serves as the reference implementation. Python follows its STFT conventions, analytic Morlet CWT, segment sample standard deviations, directional JZS Bayes factors, ESS correction, and AR(1) credible intervals. The supplied regression tests compare results against MATLAB R2021a outputs within floating-point tolerances. Independently generated Monte Carlo references can differ because the languages use different random-number streams.
+
+`bf_psi` contains log10 Bayes factors; `bf10_psi` contains raw Bayes factors. `window_BF` is measured in original signal samples, including when the STFT hop is greater than one. Use matching decomposition options when simulating a reference and analysing a signal. Credible intervals are conditional on the estimated AR(1) correlation; constant columns are rejected because their posterior under the reference prior is improper.
 
 MATLAB requirements:
 - Signal Processing Toolbox
 - Wavelet Toolbox
 - Statistics and Machine Learning Toolbox
 - DSP System Toolbox
+- Curve Fitting Toolbox (for the CWT simulation reference fit)
 
 Python requirements:
 - numpy>=1.23
 - scipy>=1.9
-- pywavelets>=1.4
+
+PyWavelets is no longer required. Python must be version 3.8 or newer.
+
+## Verification
+
+From the repository root:
+
+```shell
+python python/tests/test_equivalence.py
+```
+
+The eight regression groups cover STFT/CWT pipelines, nonunit hops, all tails, extreme t statistics, ESS, missing data, AR(1) intervals, paired comparisons, posterior odds, and simulation fits. The MATLAB reference outputs are bundled; running the Python tests does not require MATLAB. To regenerate the fixtures with MATLAB and the toolboxes listed above, run `python/tests/export_matlab_reference.m`.
 
 ---
 

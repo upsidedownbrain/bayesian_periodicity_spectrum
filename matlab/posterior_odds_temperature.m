@@ -3,9 +3,8 @@ function [postOdds] = posterior_odds_temperature(bf_psi, varargin)
 % empirical prior (population mean) adjusted with a temperature parameter.
 %
 % Authors: Jesús Pardo-Valencia, Guglielmo Foffani
-% Version: 2.0.0
-% Date: March 2026
-% Reference: 
+% Version: 2.0.0 
+% Date: October 2026
 % Repository: GitHub
 % License: MIT License
 % Copyright (c) 2025 jpv

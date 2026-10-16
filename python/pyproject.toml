@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bayesian-periodicity"
+version = "2.0.0"
+description = "Bayesian periodicity spectrum with MATLAB-compatible numerical conventions"
+requires-python = ">=3.8"
+dependencies = ["numpy>=1.23", "scipy>=1.9"]
+license = {text = "MIT"}
+authors = [{name = "Jesús Pardo-Valencia"}, {name = "Guglielmo Foffani"}]
+
+[tool.setuptools]
+packages = ["bayesian_periodicity"]
+
+[tool.setuptools.package-dir]
+bayesian_periodicity = "."
